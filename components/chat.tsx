@@ -37,9 +37,12 @@ function useSimulatedChat(options: SimulatedChatOptions = {}, setCurrentMessageI
     setSimulatedMessages(prev => [...prev, msg]);
     // Simulate AI response
     setTimeout(() => {
-      // find the response to this prompt, only get the first and only response
-      const successor = msg.successors[Math.floor(Math.random() * msg.successors.length)];
-      const responseMessage = MessageBank.filter(message => message.id === successor)[0];
+      let responseMessage = MessageBank.filter(message => message.id === "-1")[0];
+      
+      if (msg.id !== "-1") {
+        const successor = msg.successors[Math.floor(Math.random() * msg.successors.length)];
+        responseMessage = MessageBank.filter(message => message.id === successor)[0];
+      }
 
       setSimulatedMessages(prev => [...prev, {
         id: responseMessage.id,
@@ -116,7 +119,7 @@ export default function Chat() {
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          sendMessage({ text: input, id: 0 }, { body: { selectedModel } });
+          sendMessage({ text: input, id: "-1" }, { body: { selectedModel } });
           setInput("");
         }}
         className="pb-8 bg-white dark:bg-black w-full max-w-xl mx-auto px-4 sm:px-0"

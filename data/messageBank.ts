@@ -3,6 +3,18 @@
 export const MessageBank = 
 [   
   {
+    id: "-1",
+    role: "user",   
+    successors: ["0", "1"], 
+    parts: [
+        {
+            type: "text",        
+            text: "Hi, I am your friendly training chatbot, please choose one of the buttons below as your prompt.",
+            state: "done"
+        }
+    ]
+  },
+  {
     id: "0",
     role: "user",   
     successors: ["2", "8", "9"], 
