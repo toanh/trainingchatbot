@@ -77,7 +77,7 @@ export const MessageBank =
     parts: [
       {
         type: "text",
-        text: "Let's count the w's in the word \"oughwnmtherwqbyewcatwroad.\"  \nI'll spell it out one letter at a time and show each letter as I go:  \nO U G H W N M T H E R W Q B Y E W C A T W R O A D .  \nNow, let's count the w's:  \nThere are 4 w's in the word."
+        text: "Let's count the w's in the word \"oughwnmtherwqbyewcatwroad.\"  \n\nI'll spell it out one letter at a time and show each letter as I go:  \n\n**O U G H W N M T H E R W Q B Y E W C A T W R O A D .**  \n\nNow, let's count the w's:  \n\nThere are **4** \"w\"s."
       }
     ]
   },    
