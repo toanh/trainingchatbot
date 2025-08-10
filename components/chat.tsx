@@ -10,6 +10,7 @@ import { Header } from "./header";
 import { toast } from "sonner";
 import { SuggestedPrompts } from "./suggested-prompts";
 import { MessageBank } from "@/data/messageBank";
+import { start } from "repl";
 
 interface SimulatedChatOptions {
   onError?: (error: Error) => void;
@@ -82,7 +83,13 @@ function useSimulatedChat(options: SimulatedChatOptions = {}, setCurrentMessageI
 export default function Chat() {
   const [input, setInput] = useState("");
   const [selectedModel, setSelectedModel] = useState<modelID>(defaultModel);
-  const [currentMessageIDs, setCurrentMessageIDs] = useState<string[]>(["0", "1"]);
+  const startConvoID = "0";
+
+
+  const startingMessages = MessageBank
+                              .filter(message => message.startConvoID == startConvoID)
+                              .map(message => (message.id));
+  const [currentMessageIDs, setCurrentMessageIDs] = useState<string[]>(startingMessages);
   //const { sendMessage, messages, status, stop } = useChat({
   const { sendMessage, messages, status, stop } = useSimulatedChat({
     onError: (error) => {
@@ -106,14 +113,14 @@ export default function Chat() {
       <Header />
       {messages.length === 0 ? (
         
-        <div className="max-w-xl mx-auto w-full">
+        <div className="max-w-4xl mx-auto w-full">
           <ProjectOverview />        
         </div>
       ) : (
         <Messages messages={messages} isLoading={isLoading} status={status} />
       )}
 
-      <div className="max-w-xl mx-auto w-full">
+      <div className="max-w-4xl mx-auto w-full">
         <SuggestedPrompts sendMessage={handleSuggestedPrompt} messageIDs={currentMessageIDs}/> 
       </div>      
       <form

@@ -24,7 +24,9 @@ function PureSuggestedPrompts({ sendMessage, messageIDs }: SuggestedPromptsProps
   return (
     <div
       data-testid="suggested-actions"
-      className="grid sm:grid-cols-2 gap-2 w-full my-5"
+      //className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 w-full my-5"
+      className="grid gap-2 w-full my-5"
+      style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', maxWidth: '100%'}}
     >
       {suggestedActions.map((suggestedAction, index) => (
         <motion.div

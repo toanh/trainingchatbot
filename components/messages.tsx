@@ -17,7 +17,7 @@ export const Messages = ({
       className="flex-1 h-full space-y-4 overflow-y-auto py-8"
       ref={containerRef}
     >
-      <div className="max-w-xl mx-auto pt-8">
+      <div className="max-w-4xl mx-auto pt-8">
         {messages.map((m, i) => (
           <Message
             key={i}

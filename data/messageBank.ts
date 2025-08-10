@@ -2,7 +2,7 @@
 
 export const MessageBank = 
 [   
-  {
+  {    
     id: "-1",
     role: "user",   
     successors: ["0", "1"], 
@@ -15,6 +15,7 @@ export const MessageBank =
     ]
   },
   {
+    startConvoID: "0",
     id: "0",
     role: "user",   
     successors: ["2", "8", "9"], 
@@ -26,6 +27,7 @@ export const MessageBank =
     ]
   },
   {
+    startConvoID: "0",
     id: "1",
     role: "user",      
     successors: ["3"],   
@@ -36,10 +38,33 @@ export const MessageBank =
       }
     ]
   },  
+  {
+    startConvoID: "0",
+    id: "100",
+    role: "user",      
+    successors: ["101"],   
+    parts: [
+      {
+        type: "text",   
+        text: "Write me a lesson plan about the ancient Sumerian civilisation."
+      }
+    ]
+  },   
+  {
+    id: "101",
+    role: "user",      
+    successors: ["0", "1", "100"],   
+    parts: [
+      {
+        type: "text",   
+        text: "Here is a **lesson plan** about the ancient Sumerian civilisation.  \n\nThey were very old."
+      }
+    ]
+  },     
   { 
     id: "2",
     role: "assistant",
-    successors: ["0", "1"], 
+    successors: ["0", "1", "100"],   
     parts: [
       {
         type: "text",
@@ -85,7 +110,7 @@ export const MessageBank =
   {
     id: "6",
     role: "assistant",   
-    successors: ["0", "1"], 
+    successors: ["0", "1", "100"],    
     parts: [
       {
         type: "text",
@@ -107,7 +132,7 @@ export const MessageBank =
   { 
     id: "8",
     role: "assistant",
-    successors: ["0", "1"], 
+    successors: ["0", "1", "100"],   
     parts: [
       {
         type: "text",
@@ -119,7 +144,7 @@ export const MessageBank =
   { 
     id: "9",
     role: "assistant",
-    successors: ["0", "1"], 
+    successors: ["0", "1", "100"],   
     parts: [
       {
         type: "text",
