@@ -4,7 +4,7 @@ export const ProjectOverview = () => {
     <div className="flex flex-col items-center justify-end">
       <h1 className="text-3xl font-semibold mb-4">Code for Schools Training Chatbot</h1>
       <p className="text-center">
-        A simulated AI chatbot used to simulate aspects of Generative AI for training. Developed by <Link href="https://codeforschools.com">Code for Schools</Link>.
+        A simulated AI chatbot used to demonstrate aspects of Generative AI as part of a training course for teachers, students and parents. Developed by <Link href="https://codeforschools.com">Code for Schools</Link>.
       </p>
     </div>
   );
