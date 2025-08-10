@@ -5,6 +5,8 @@ import { AnimatePresence, motion } from "motion/react";
 import { memo, useCallback, useEffect, useState } from "react";
 import equal from "fast-deep-equal";
 
+import Image from 'next/image';
+
 import { Markdown } from "./markdown";
 import { cn } from "@/lib/utils";
 import {
@@ -129,9 +131,15 @@ const PurePreviewMessage = ({
           )}
         >
           {message.role === "assistant" && (
-            <div className="flex justify-center items-center rounded-full ring-1 size-8 shrink-0 ring-border bg-background">
+            <div className="flex justify-center items-center rounded-full ring-1 size-10 shrink-0 ring-border bg-background">
               <div className="">
-                <SparklesIcon size={14} />
+                <Image
+                  src="/robot.svg"
+                  alt="Code for Schools Robot"
+                  width={32}
+                  height={32}
+                  className="w-8 h-8"
+                />
               </div>
             </div>
           )}

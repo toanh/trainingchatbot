@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Vercel x xAI Chatbot",
+  title: "Code for Schools Training Chatbot",
   description:
     "This starter project uses xAI with the AI SDK via the Vercel Marketplace",
 };

@@ -11,7 +11,8 @@ export async function POST(req: Request) {
     selectedModel,
   }: { messages: UIMessage[]; selectedModel: modelID } = await req.json();
 
-  const result = streamText({
+
+   const result = streamText({
     model: model.languageModel(selectedModel),
     system: "You are a helpful assistant.",
     messages: convertToModelMessages(messages),
@@ -24,7 +25,7 @@ export async function POST(req: Request) {
     },
   });
 
-  return result.toUIMessageStreamResponse({
+  const response = result.toUIMessageStreamResponse({
     sendReasoning: true,
     onError: (error) => {
       if (error instanceof Error) {
@@ -33,7 +34,9 @@ export async function POST(req: Request) {
         }
       }
       console.error(error);
-      return "An error occurred.";
+      return "An error occurred!";
     },
-  });
+  });  
+
+  return response;
 }

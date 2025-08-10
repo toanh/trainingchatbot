@@ -2,30 +2,29 @@
 
 import { motion } from "motion/react";
 import { Button } from "./ui/button";
-import { memo } from "react";
+
+import { MessageBank } from "@/data/messageBank";
 
 interface SuggestedPromptsProps {
-  sendMessage: (input: string) => void;
+  sendMessage: (input: string, id: string, successors: string[]) => void;
+  messageIDs: string[];
 }
 
-function PureSuggestedPrompts({ sendMessage }: SuggestedPromptsProps) {
-  const suggestedActions = [
-    {
-      title: "What are the advantages",
-      label: "of using Next.js?",
-      action: "What are the advantages of using Next.js?",
-    },
-    {
-      title: "What is the weather",
-      label: "in San Francisco?",
-      action: "What is the weather in San Francisco?",
-    },
-  ];
-
+function PureSuggestedPrompts({ sendMessage, messageIDs }: SuggestedPromptsProps) {
+  const suggestedActions = MessageBank
+    .filter(message => messageIDs.includes(message.id))
+    .map(message => ({
+      id: message.id,
+      title: message.parts[0].text?.split(' ').slice(0, 4).join(' ') || '',
+      label: message.parts[0].text?.split(' ').slice(4).join(' ') || '',
+      action: message.parts[0].text || '',
+      successors: message.successors || []}
+    ));
+  
   return (
     <div
       data-testid="suggested-actions"
-      className="grid sm:grid-cols-2 gap-2 w-full"
+      className="grid sm:grid-cols-2 gap-2 w-full my-5"
     >
       {suggestedActions.map((suggestedAction, index) => (
         <motion.div
@@ -39,9 +38,10 @@ function PureSuggestedPrompts({ sendMessage }: SuggestedPromptsProps) {
           <Button
             variant="ghost"
             onClick={async () => {
-              sendMessage(suggestedAction.action);
+              sendMessage(suggestedAction.action, suggestedAction.id, suggestedAction.successors);
             }}
-            className="text-left border rounded-xl px-4 py-3.5 text-sm flex-1 gap-1 sm:flex-col w-full h-auto justify-start items-start"
+            //className="text-left border rounded-xl px-4 py-3.5 text-sm flex-1 gap-1 sm:flex-col w-full h-auto justify-start items-start"
+            className="text-left border rounded-xl px-4 py-3.5 text-sm flex-1 gap-1 sm:flex-col w-full h-auto justify-start items-start whitespace-normal break-words"
           >
             <span className="font-medium">{suggestedAction.title}</span>
             <span className="text-muted-foreground">
@@ -49,9 +49,9 @@ function PureSuggestedPrompts({ sendMessage }: SuggestedPromptsProps) {
             </span>
           </Button>
         </motion.div>
-      ))}
+      ))}      
     </div>
   );
 }
 
-export const SuggestedPrompts = memo(PureSuggestedPrompts, () => true);
+export const SuggestedPrompts = PureSuggestedPrompts;
