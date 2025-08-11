@@ -1,6 +1,7 @@
 import Link from "next/link";
-import { DeployButton } from "./deploy-button";
+import { CoursesButton } from "./courses-button";
 import { XAiIcon } from "./icons";
+import Image from "next/image";
 
 export const Header = () => {
   return (
@@ -12,24 +13,17 @@ export const Header = () => {
               className="text-zinc-800 dark:text-zinc-100 -translate-y-[.5px]"
               rel="noopener"
               target="_blank"
-              href="https://vercel.com/"
+              href="https://codeforschools.com/"
             >
-              <svg
-                data-testid="geist-icon"
-                height={18}
-                strokeLinejoin="round"
-                viewBox="0 0 16 16"
-                width={18}
-                style={{ color: "currentcolor" }}
-              >
-                <title>Vercel Logo</title>
-                <path
-                  fillRule="evenodd"
-                  clipRule="evenodd"
-                  d="M8 1L16 15H0L8 1Z"
-                  fill="currentColor"
+             <div className="">
+                <Image
+                  src="/robot.svg"
+                  alt="Code for Schools Robot"
+                  width={32}
+                  height={32}
+                  className="w-8 h-8"
                 />
-              </svg>
+              </div>
             </Link>
             <div className="jsx-e3e12cc6f9ad5a71 w-4 text-lg text-center text-zinc-300 dark:text-zinc-600">
               <svg
@@ -59,9 +53,9 @@ export const Header = () => {
               </Link>
             </div>
           </span>
-        </div>
+        </div>        
         <div className="flex flex-row items-center gap-2 shrink-0">
-          <DeployButton />
+          <CoursesButton />
         </div>
       </div>
     </div>

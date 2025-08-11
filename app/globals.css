@@ -124,3 +124,15 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Hide Next.js development toast */
+.nextjs-toast {
+  display: none !important;
+}
+
+/* Alternative selectors for Next.js toasts */
+[class*="nextjs-toast"],
+[class*="nextjs-notification"],
+[data-nextjs-toast] {
+  display: none !important;
+}

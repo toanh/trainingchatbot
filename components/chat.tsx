@@ -7,7 +7,7 @@ import { Textarea } from "./textarea";
 import { ProjectOverview } from "./project-overview";
 import { Messages } from "./messages";
 import { Header } from "./header";
-import { toast } from "sonner";
+//import { toast } from "sonner";
 import { SuggestedPrompts } from "./suggested-prompts";
 import { MessageBank } from "@/data/messageBank";
 import { start } from "repl";
@@ -93,12 +93,17 @@ export default function Chat() {
   //const { sendMessage, messages, status, stop } = useChat({
   const { sendMessage, messages, status, stop } = useSimulatedChat({
     onError: (error) => {
+      console.log(error.message.length > 0
+        ? error.message
+        : "An error occured, please try again later.");
+      /*
       toast.error(
         error.message.length > 0
           ? error.message
           : "An error occured, please try again later.",
         { position: "top-center", richColors: true },
       );
+      */
     },
   }, setCurrentMessageIDs);
 
